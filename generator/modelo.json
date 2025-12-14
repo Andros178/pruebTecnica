@@ -1,0 +1,669 @@
+{
+  "basePackage": "com.example.usco",
+  "projectId": "generator",
+  "entities": [
+    {
+      "module": "usuario",
+      "name": "Usuario",
+      "table": "usuario",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "usuario_generator",
+          "sequenceName": "usuario_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "nombre",
+          "type": "String",
+          "column": "nombre",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        },
+        {
+          "name": "contrasena",
+          "type": "String",
+          "column": "contrasena",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name":"persona",
+          "type":"ManyToOne",
+          "targetEntity":"Persona",
+          "module":"persona",
+          "fetch":"LAZY",
+          "joinColumn":{
+            "name":"persona_id",
+            "referencedColumn":"id",
+            "nullable": false
+          },
+          "dto":{
+            "idField":"personaId",
+            "notNull": true
+          }
+        },
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository":{
+        "customQueries":[
+          
+        ]
+      }
+    },
+    {
+      "module": "persona",
+      "name": "Persona",
+      "table": "persona",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "persona_generator",
+          "sequenceName": "persona_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "nombre",
+          "type": "String",
+          "column": "nombre",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        },
+        {
+          "name": "segundoNombre",
+          "type": "String",
+          "column": "segundo_nombre",
+          "length": 100,
+          "nullable": true,
+          "dto": {
+            
+            "size": 100
+          }
+        },
+        {
+          "name": "apellido",
+          "type": "String",
+          "column": "apellido",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        },
+        {
+          "name": "segundoApellido",
+          "type": "String",
+          "column": "segundo_apellido",
+          "length": 100,
+          "nullable": true,
+          "dto": {
+            
+            "size": 100
+          }
+        },
+        {
+          "name": "correo",
+          "type": "String",
+          "column": "correo",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        },
+        {
+          "name": "numeroIdentificacion",
+          "type": "String",
+          "column": "numero_identificacion",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name": "tipoIdentificacion",
+          "type": "ManyToOne",
+          "targetEntity": "TipoIdentificacion",
+          "module": "tipoIdentificacion",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "tipoIdentificacion_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "tipoIdentificacionId",
+            "notNull": true
+          }
+        },
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findByIdAndEstadoId"
+        ]
+      }
+    },
+    {
+      "module": "rol",
+      "name": "Rol",
+      "table": "rol",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "rol_generator",
+          "sequenceName": "rol_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "nombre",
+          "type": "String",
+          "column": "nombre",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findByTipoIdentificacionIdAndEstadoId",
+          "findByTipoIdentificacionIdOrderedByIdAsc"
+        ]
+      }
+    },
+    {
+      "module": "usuarioRol",
+      "name": "UsuarioRol",
+      "table": "usuario_rol",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "usuarioRol_generator",
+          "sequenceName": "usuario_rol_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields":[],
+      "relations": [
+        {
+          "name": "usuario",
+          "type": "ManyToOne",
+          "targetEntity": "Usuario",
+          "module": "usuario",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "usuario_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "usuarioId",
+            "notNull": true
+          }
+        },
+        {
+          "name": "rol",
+          "type": "ManyToOne",
+          "targetEntity": "Rol",
+          "module": "rol",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "rol_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "rolId",
+            "notNull": true
+          }
+        },
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findByUsuarioIdAndEstadoId",
+          "findByRolIdAndEstadoId",
+          "findByUsuarioIdOrderByIdAsc"
+        ]
+      }
+    },
+    {
+      "module": "estado",
+      "name": "Estado",
+      "table": "estado",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "estado_generator",
+          "sequenceName": "estado_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "nombre",
+          "type": "String",
+          "column": "nombre",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations":[],
+      "repository": {
+        "customQueries": [
+          "findById"
+        ]
+      }
+    },
+    {
+      "module": "tipoIdentificacion",
+      "name": "TipoIdentificacion",
+      "table": "tipo_identificacion",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "tipoIdentificacion_generator",
+          "sequenceName": "tipo_identificacion_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "nombre",
+          "type": "String",
+          "column": "nombre",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findById"
+        ]
+      }
+    },
+    {
+      "module": "tipoTramite",
+      "name": "TipoTramite",
+      "table": "tipo_tramite",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "tipoTramite_generator",
+          "sequenceName": "tipo_tramite_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "nombre",
+          "type": "String",
+          "column": "nombre",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findById"
+        ]
+      }
+    },
+    {
+      "module": "tramite",
+      "name": "Tramite",
+      "table": "tramite",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "tramite_generator",
+          "sequenceName": "tramite_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "descripcion",
+          "type": "String",
+          "column": "descripcion",
+          "length": 100,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 100
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        },
+        {
+          "name": "tipoTramite",
+          "type": "ManyToOne",
+          "targetEntity": "TipoTramite",
+          "module": "tipoTramite",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "tipoTramite_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "tipoTramiteId",
+            "notNull": true
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findById"
+        ]
+      }
+    },
+    {
+      "module": "archivoAdjunto",
+      "name": "ArchivoAdjunto",
+      "table": "archivo_adjunto",
+      "schema": "public",
+      "id": {
+        "name": "id",
+        "type": "Long",
+        "column": "id",
+        "sequence": {
+          "name": "archivoAdjunto_generator",
+          "sequenceName": "archivo_adjunto_id_seq",
+          "allocationSize": 1
+        }
+      },
+      "fields": [
+        {
+          "name": "mime",
+          "type": "String",
+          "column": "mime",
+          "length": 255,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 255
+          }
+        },
+        {
+          "name": "nombreArchivo",
+          "type": "String",
+          "column": "nombre_archivo",
+          "length": 255,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 255
+          }
+        },
+        {
+          "name": "fechaCreacion",
+          "type": "java.time.LocalDateTime",
+          "column": "fecha_creacion",
+          "length": 255,
+          "nullable": false,
+          "dto": {
+            "notNull": true
+          },
+          "default":{
+            "now": true
+          }
+        },
+        {
+          "name": "tamano",
+          "type": "String",
+          "column": "tamano",
+          "length": 255,
+          "nullable": false,
+          "dto": {
+            "notBlank": true,
+            "size": 255
+          }
+        }
+      ],
+      "relations": [
+        {
+          "name": "tramite",
+          "type": "ManyToOne",
+          "targetEntity": "Tramite",
+          "module": "tramite",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "tramite_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "tramiteId",
+            "notNull": true
+          }
+        },
+        {
+          "name": "estado",
+          "type": "ManyToOne",
+          "targetEntity": "Estado",
+          "module": "estado",
+          "fetch": "LAZY",
+          "joinColumn": {
+            "name": "estado_id",
+            "referencedColumn": "id",
+            "nullable": false
+          },
+          "dto": {
+            "idField": "estadoId",
+            "notNull": true
+          },
+          "default": {
+            "id": 1
+          }
+        }
+      ],
+      "repository": {
+        "customQueries": [
+          "findById"
+        ]
+      }
+    }
+  ]
+}
