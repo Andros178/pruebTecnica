@@ -44,6 +44,16 @@ public class TramiteController {
             .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/funcionario/{id}")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','ADMINISTRATIVO')")
+    public ResponseEntity<Page<TramiteDTO>> findByFuncionario(@PathVariable Long id, @PageableDefault Pageable pageable) {
+        Page<TramiteDTO> page = service.findByFuncionario(id, pageable);
+        if (page.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(page);
+    }
+
     @PostMapping
     public ResponseEntity<Void> create(
             @Valid @RequestBody TramiteCreateRequest req,

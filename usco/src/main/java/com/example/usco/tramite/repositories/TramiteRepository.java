@@ -8,4 +8,5 @@ import com.example.usco.tramite.Tramite;
 @Repository
 public interface TramiteRepository
         extends JpaRepository<Tramite, Long> {
+        org.springframework.data.domain.Page<Tramite> findAllByAsignado_Id(Long usuarioId, org.springframework.data.domain.Pageable pageable);
 }
