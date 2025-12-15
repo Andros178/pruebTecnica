@@ -21,10 +21,12 @@ public class TipoTramiteService {
     private final TipoTramiteRepository repository;
     private final TipoTramiteMapper mapper;
 
+    @Transactional(readOnly = true)
     public Page<TipoTramiteDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(mapper::toDTO);
     }
 
+    @Transactional(readOnly = true)
     public Optional<TipoTramiteDTO> findById(Long id) {
         return repository.findById(id).map(mapper::toDTO);
     }

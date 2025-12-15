@@ -35,10 +35,11 @@ public class UsuarioRolService {
     private final RolMapper rolMapper;
     private final EstadoRepository estadoRepository;
 
+    @Transactional(readOnly = true)
     public Page<UsuarioRolDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(mapper::toDTO);
     }
-
+    @Transactional(readOnly = true)
     public Optional<UsuarioRolDTO> findById(Long id) {
         return repository.findById(id).map(mapper::toDTO);
     }
