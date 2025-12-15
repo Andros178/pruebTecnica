@@ -14,7 +14,8 @@ public interface PersonaMapper {
     @Mapping(target = "estadoNombre", source = "estado.nombre")
     PersonaDTO toDTO(Persona entity);
 
-    @Mapping(source = "tipoIdentificacionId", target = "tipoIdentificacion.id")
-
+    // Do not map tipoIdentificacionId -> tipoIdentificacion.id here, to avoid creating
+    // transient TipoIdentificacion instances. The service will resolve and set the
+    // association from the repository.
     Persona toEntity(PersonaDTO dto);
 }
