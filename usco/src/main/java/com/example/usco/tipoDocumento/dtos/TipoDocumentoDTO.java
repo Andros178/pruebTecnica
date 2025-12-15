@@ -1,4 +1,4 @@
-package com.example.usco.tipoTramite.dtos;
+package com.example.usco.tipoDocumento.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -7,13 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TipoTramiteDTO {
-
+public class TipoDocumentoDTO {
     private Long id;
-
     private String nombre;
-    private String descripcion;
-    private Long estadoId;
-    private String estadoNombre;
-
 }

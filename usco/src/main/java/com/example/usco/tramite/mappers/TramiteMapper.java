@@ -17,6 +17,7 @@ public interface TramiteMapper {
     @Mapping(target = "estadoNombre", source = "estado.nombre")
     @Mapping(target = "tipoTramiteId", source = "tipoTramite.id")
     @Mapping(target = "tipoTramiteNombre", source = "tipoTramite.nombre")
+    @Mapping(target = "tipoTramiteDescripcion", source = "tipoTramite.descripcion")
     TramiteDTO toDTO(Tramite entity);
 
     @Mapping(target = "asignado.id", source = "asignadoId")

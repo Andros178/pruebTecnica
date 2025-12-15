@@ -24,5 +24,6 @@ public class TramiteDTO {
 
     private Long tipoTramiteId;
     private String tipoTramiteNombre;
+    private String tipoTramiteDescripcion;
 
 }

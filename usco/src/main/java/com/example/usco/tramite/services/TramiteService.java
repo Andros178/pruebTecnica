@@ -26,6 +26,8 @@ import com.example.usco.tipoTramite.TipoTramite;
 import com.example.usco.tipoTramite.repositories.TipoTramiteRepository;
 import com.example.usco.seguimiento.Seguimiento;
 import com.example.usco.seguimiento.repositories.SeguimientoRepository;
+import com.example.usco.documentoTipoTramite.services.DocumentoTipoTramiteService;
+import com.example.usco.tipoDocumento.TipoDocumento;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +39,7 @@ public class TramiteService {
     private final TipoTramiteRepository tipoTramiteRepository;
     private final UsuarioRepository usuarioRepository;
     private final SeguimientoRepository seguimientoRepository;
+    private final DocumentoTipoTramiteService documentoTipoTramiteService;
 
     public Page<TramiteDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(mapper::toDTO);
@@ -130,6 +133,28 @@ public class TramiteService {
             tramite.setCreador(usuario);
         }
 
+        
+        var required = documentoTipoTramiteService.findRequiredByTipoTramite(tipo.getId());
+        if (required != null && !required.isEmpty()) {
+            java.util.Set<Long> provided = new java.util.HashSet<>();
+            if (req.getArchivos() != null) {
+                for (var a : req.getArchivos()) {
+                    if (a.getTipoDocumentoId() != null) {
+                        provided.add(a.getTipoDocumentoId());
+                    }
+                }
+            }
+
+            java.util.List<TipoDocumento> missing = required.stream()
+                    .filter(r -> r != null && !provided.contains(r.getId()))
+                    .collect(java.util.stream.Collectors.toList());
+
+            if (!missing.isEmpty()) {
+                String names = missing.stream().map(t -> t.getNombre()).collect(java.util.stream.Collectors.joining(", "));
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Faltan documentos requeridos: " + names);
+            }
+        }
+
         var saved = repository.save(tramite);
 
         if (req.getArchivos() != null && !req.getArchivos().isEmpty()) {
@@ -139,6 +164,11 @@ public class TramiteService {
                 adj.setMime(a.getMime() != null ? a.getMime() : "application/octet-stream");
                 adj.setTamano(a.getTamano() != null ? a.getTamano() : "0");
                 adj.setTramite(saved);
+                if (a.getTipoDocumentoId() != null) {
+                    TipoDocumento td = new TipoDocumento();
+                    td.setId(a.getTipoDocumentoId());
+                    adj.setTipoDocumento(td);
+                }
                 archivoAdjuntoRepository.save(adj);
             }
         }

@@ -10,6 +10,7 @@ import com.example.usco.tipoTramite.dtos.TipoTramiteDTO;
 public interface TipoTramiteMapper {
     @Mapping(target = "estadoId", source = "estado.id")
     @Mapping(target = "estadoNombre", source = "estado.nombre")
+    @Mapping(target = "descripcion", source = "descripcion")
     TipoTramiteDTO toDTO(TipoTramite entity);
 
     @Mapping(source = "estadoId", target = "estado.id")

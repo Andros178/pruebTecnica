@@ -34,6 +34,13 @@ public class TipoTramite {
     )
     private String nombre;
 
+    @Column(
+      name = "descripcion"
+      , length = 1000
+      , nullable = true
+    )
+    private String descripcion;
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)
