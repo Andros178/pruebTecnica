@@ -1,0 +1,22 @@
+<mat-card style="max-width:420px;margin:2rem auto;padding:1rem">
+  <mat-card-title>Iniciar sesión</mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="outline" style="width:100%;margin-top:0.5rem">
+        <mat-label>Usuario</mat-label>
+        <input matInput [(ngModel)]="nombre" name="nombre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width:100%;margin-top:0.5rem">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [(ngModel)]="contrasena" name="contrasena" type="password" />
+      </mat-form-field>
+
+      <div style="display:flex;align-items:center;margin-top:1rem">
+        <button mat-flat-button color="primary" (click)="submit()" [disabled]="loading">Ingresar</button>
+        <a routerLink="/register" style="margin-left:auto;align-self:center">Crear cuenta</a>
+        <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="24" style="margin-left:12px"></mat-progress-spinner>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

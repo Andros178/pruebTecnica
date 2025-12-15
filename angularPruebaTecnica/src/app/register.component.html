@@ -1,0 +1,65 @@
+<mat-card style="max-width:720px;margin:2rem auto;padding:0.5rem">
+  <mat-card-title>Registro de persona y usuario</mat-card-title>
+  <mat-card-content>
+    <form>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="nombre" name="nombre" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Segundo nombre</mat-label>
+          <input matInput [(ngModel)]="segundoNombre" name="segundoNombre" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput [(ngModel)]="apellido" name="apellido" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Segundo apellido</mat-label>
+          <input matInput [(ngModel)]="segundoApellido" name="segundoApellido" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput [(ngModel)]="correo" name="correo" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo identificación</mat-label>
+          <mat-select [(ngModel)]="tipoIdentificacionId" name="tipoIdentificacionId">
+            <mat-option *ngFor="let t of tipoOptions" [value]="t.id">{{t.nombre || t.descripcion || t.tipo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="grid-column: 1 / -1">
+          <mat-label>Número identificación</mat-label>
+          <input matInput [(ngModel)]="numeroIdentificacion" name="numeroIdentificacion" />
+        </mat-form-field>
+      </div>
+
+      <div style="margin-top:16px"> 
+        <h3>Credenciales</h3>
+        <div style="display:flex;gap:12px">
+          <mat-form-field appearance="outline" style="flex:1">
+            <mat-label>Usuario (opcional)</mat-label>
+            <input matInput [(ngModel)]="usuarioNombre" name="usuarioNombre" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="flex:1">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [(ngModel)]="contrasena" type="password" name="contrasena" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;margin-top:16px">
+        <button mat-flat-button color="primary" (click)="submit()" [disabled]="loading">Crear cuenta</button>
+        <a routerLink="/login" style="margin-left:auto">Volver a login</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
