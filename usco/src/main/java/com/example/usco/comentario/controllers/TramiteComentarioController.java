@@ -19,13 +19,13 @@ public class TramiteComentarioController {
 
     private final ComentarioService comentarioService;
 
-    @PostMapping("/api/tramites/{id}/comentarios")
+    @PostMapping("/api/tramite/{id}/comentarios")
     public ResponseEntity<ComentarioDTO> addComment(@PathVariable Long id, @Valid @RequestBody ComentarioCreateRequest req) {
         var dto = comentarioService.addComment(id, req);
         return ResponseEntity.status(201).body(dto);
     }
 
-    @GetMapping("/api/tramites/{id}/comentarios")
+    @GetMapping("/api/tramite/{id}/comentarios")
     public ResponseEntity<List<ComentarioDTO>> timeline(@PathVariable Long id) {
         var list = comentarioService.timeline(id);
         if (list.isEmpty()) {

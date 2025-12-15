@@ -38,7 +38,7 @@ public class AuthService {
             throw new BadCredentialsException("Credenciales inválidas");
         }
 
-        // load active roles for user (estado id = 1)
+        
         var roles = usuarioRolRepository.findAllByUsuario_IdAndEstado_Id(user.getId(), 1L)
             .stream()
             .map(ur -> ur.getRol().getNombre())
@@ -75,7 +75,7 @@ public class AuthService {
 
         Usuario saved = usuarioRepository.save(user);
 
-        // assign default role ESTUDIANTE (id = 1) from DB
+        
         var rol = rolRepository.findById(1L)
             .orElseThrow(() -> new RuntimeException("Rol ESTUDIANTE (id=1) no encontrado"));
 
@@ -86,7 +86,7 @@ public class AuthService {
 
         usuarioRolRepository.save(usuarioRol);
 
-        // load roles for token
+        
         var roles = usuarioRolRepository.findAllByUsuario_IdAndEstado_Id(saved.getId(), 1L)
             .stream()
             .map(ur -> ur.getRol().getNombre())

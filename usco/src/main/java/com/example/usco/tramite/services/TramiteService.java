@@ -76,7 +76,7 @@ public class TramiteService {
 
         repository.save(entity);
 
-        // record seguimiento with authenticated user if available
+        
         var auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && auth.getName() != null) {
             var nombre = auth.getName();
@@ -116,7 +116,7 @@ public class TramiteService {
         tramite.setDescripcion(req.getDescripcion());
         tramite.setTipoTramite(tipo);
 
-        // set creador from authenticated user if available
+        
         var auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && auth.getName() != null) {
             var nombre = auth.getName();

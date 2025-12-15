@@ -52,7 +52,7 @@ public class UsuarioRolService {
             throw new RuntimeException("rolId no existe");
         }
 
-        // Prevent duplicate usuario+rol
+        
         if (repository.existsByUsuario_IdAndRol_Id(dto.getUsuarioId(), dto.getRolId())) {
             throw new RuntimeException("La asociación usuario+rol ya existe");
         }

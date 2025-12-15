@@ -9,10 +9,10 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArchivoAdjuntoCreateDTO {
 
-    // Simulated file URL
+    
     private String url;
 
-    // Optional metadata
+    
     private String mime;
     private String nombreArchivo;
     private String tamano;

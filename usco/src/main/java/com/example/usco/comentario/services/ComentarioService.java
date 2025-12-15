@@ -44,7 +44,7 @@ public class ComentarioService {
         var usuario = usuarioRepository.findByNombre(nombre)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuario no encontrado"));
 
-        // Optional: check that commenter is creador or asignado or has role FUNCIONARIO
+        
         boolean allowed = false;
         if (tramite.getCreador() != null && tramite.getCreador().getId() != null && tramite.getCreador().getId().equals(usuario.getId())) {
             allowed = true;

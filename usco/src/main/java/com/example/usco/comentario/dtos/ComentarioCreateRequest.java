@@ -10,5 +10,5 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ComentarioCreateRequest {
     private String mensaje;
-    private Long estadoId; // opcional: relacionar comentario con un estado
+    private Long estadoId;
 }

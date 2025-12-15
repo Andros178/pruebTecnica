@@ -16,7 +16,7 @@ public class SeguimientoController {
 
     private final SeguimientoService seguimientoService;
 
-    @GetMapping("/api/tramites/{id}/seguimiento")
+    @GetMapping("/api/tramite/{id}/seguimiento")
     public ResponseEntity<List<SeguimientoDTO>> timeline(@PathVariable Long id) {
         var list = seguimientoService.timeline(id);
         if (list.isEmpty()) {

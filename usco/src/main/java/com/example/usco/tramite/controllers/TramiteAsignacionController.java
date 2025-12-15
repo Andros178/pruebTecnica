@@ -17,8 +17,8 @@ public class TramiteAsignacionController {
 
     public static record AsignarRequest(Long usuarioId) {}
 
-    @PostMapping("/api/tramites/{id}/asignar")
-    @org.springframework.security.access.prepost.PreAuthorize("hasRole('FUNCIONARIO')")
+    @PostMapping("/api/tramite/{id}/asignar")
+    @org.springframework.security.access.prepost.PreAuthorize("hasAnyRole('FUNCIONARIO','ADMINISTRATIVO')")
     public ResponseEntity<Void> asignar(@PathVariable Long id, @Valid @RequestBody AsignarRequest req) {
         tramiteService.asignar(id, req.usuarioId());
         return ResponseEntity.noContent().build();
