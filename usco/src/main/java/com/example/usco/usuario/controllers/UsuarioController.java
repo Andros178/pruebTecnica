@@ -15,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import com.example.usco.usuario.dtos.UsuarioDTO;
 import com.example.usco.usuario.services.UsuarioService;
 import com.example.usco.utils.UriBuilderUtil;
+import com.example.usco.usuarioRol.services.UsuarioRolService;
+import com.example.usco.rol.dtos.RolDTO;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -23,6 +26,7 @@ public class UsuarioController {
 
     private final UsuarioService service;
     private final UriBuilderUtil uriBuilderUtil;
+    private final UsuarioRolService usuarioRolService;
 
     @GetMapping
     public ResponseEntity<Page<UsuarioDTO>> findAll(
@@ -74,5 +78,14 @@ public class UsuarioController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/roles")
+    public ResponseEntity<List<RolDTO>> getRolesByUsuario(@PathVariable Long id) {
+        var roles = usuarioRolService.findRolesByUsuario(id);
+        if (roles == null || roles.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(roles);
     }
 }

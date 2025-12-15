@@ -51,6 +51,7 @@ public class TramiteService {
         return repository.findById(id).map(mapper::toDTO);
     }
 
+    @Transactional
     public TramiteDTO create(TramiteDTO dto) {
         dto.setId(null);
         return mapper.toDTO(repository.save(mapper.toEntity(dto)));
