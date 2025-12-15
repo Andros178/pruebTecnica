@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
+import com.example.usco.estado.Estado;
 import com.example.usco.persona.dtos.PersonaDTO;
 import com.example.usco.persona.mappers.PersonaMapper;
 import com.example.usco.persona.repositories.PersonaRepository;
@@ -51,7 +52,7 @@ public class PersonaService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("Persona no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

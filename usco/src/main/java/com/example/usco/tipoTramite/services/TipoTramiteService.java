@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
+import com.example.usco.estado.Estado;
 import com.example.usco.tipoTramite.dtos.TipoTramiteDTO;
 import com.example.usco.tipoTramite.mappers.TipoTramiteMapper;
 import com.example.usco.tipoTramite.repositories.TipoTramiteRepository;
@@ -51,7 +52,7 @@ public class TipoTramiteService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("TipoTramite no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

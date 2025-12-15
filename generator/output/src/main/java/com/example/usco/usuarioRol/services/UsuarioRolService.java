@@ -51,7 +51,7 @@ public class UsuarioRolService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("UsuarioRol no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

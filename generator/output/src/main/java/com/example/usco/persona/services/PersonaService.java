@@ -51,7 +51,7 @@ public class PersonaService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("Persona no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

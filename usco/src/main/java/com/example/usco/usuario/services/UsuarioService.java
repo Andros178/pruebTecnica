@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
+import com.example.usco.estado.Estado;
 import com.example.usco.usuario.dtos.UsuarioDTO;
 import com.example.usco.usuario.mappers.UsuarioMapper;
 import com.example.usco.usuario.repositories.UsuarioRepository;
@@ -51,7 +52,7 @@ public class UsuarioService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

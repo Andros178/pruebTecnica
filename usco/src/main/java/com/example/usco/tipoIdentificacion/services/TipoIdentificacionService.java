@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
+import com.example.usco.estado.Estado;
 import com.example.usco.tipoIdentificacion.dtos.TipoIdentificacionDTO;
 import com.example.usco.tipoIdentificacion.mappers.TipoIdentificacionMapper;
 import com.example.usco.tipoIdentificacion.repositories.TipoIdentificacionRepository;
@@ -51,7 +52,7 @@ public class TipoIdentificacionService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("TipoIdentificacion no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import com.example.usco.archivoAdjunto.dtos.ArchivoAdjuntoDTO;
 import com.example.usco.archivoAdjunto.mappers.ArchivoAdjuntoMapper;
 import com.example.usco.archivoAdjunto.repositories.ArchivoAdjuntoRepository;
+import com.example.usco.estado.Estado;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +52,7 @@ public class ArchivoAdjuntoService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("ArchivoAdjunto no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

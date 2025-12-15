@@ -51,7 +51,7 @@ public class TipoIdentificacionService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("TipoIdentificacion no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 

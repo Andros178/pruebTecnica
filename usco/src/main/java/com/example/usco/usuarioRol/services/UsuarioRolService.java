@@ -14,6 +14,7 @@ import com.example.usco.usuarioRol.repositories.UsuarioRolRepository;
 import com.example.usco.usuario.repositories.UsuarioRepository;
 import com.example.usco.rol.repositories.RolRepository;
 import com.example.usco.usuario.Usuario;
+import com.example.usco.estado.Estado;
 import com.example.usco.rol.Rol;
 import com.example.usco.usuarioRol.repositories.UsuarioRolRepository;
 
@@ -107,7 +108,7 @@ public class UsuarioRolService {
         var entity = repository.findById(id)
             .orElseThrow(() -> new RuntimeException("UsuarioRol no encontrado"));
 
-        com.example.usco.estado.Estado nuevoEstado = new com.example.usco.estado.Estado();
+        Estado nuevoEstado = new Estado();
         nuevoEstado.setId(estadoId);
         entity.setEstado(nuevoEstado);
 
