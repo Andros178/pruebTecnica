@@ -16,6 +16,6 @@ public class ArchivoAdjuntoCreateDTO {
     private String mime;
     private String nombreArchivo;
     private String tamano;
-    private Long tipoDocumentoId;
+    
 
 }

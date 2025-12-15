@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 import com.example.usco.tramite.Tramite;
 import com.example.usco.estado.Estado;
-import com.example.usco.tipoDocumento.TipoDocumento;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -62,9 +61,6 @@ public class ArchivoAdjunto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Tramite tramite;
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  private TipoDocumento tipoDocumento;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Estado estado;
