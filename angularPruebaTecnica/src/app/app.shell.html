@@ -1,8 +1,14 @@
 <mat-toolbar color="primary">
   <span style="font-weight:600">USCO - Demo</span>
   <span style="flex:1 1 auto"></span>
-  <a mat-button routerLink="/login">Login</a>
-  <a mat-button routerLink="/register">Registro</a>
+  <ng-container *ngIf="!isAuthenticated(); else logged">
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/register">Registro</a>
+  </ng-container>
+  <ng-template #logged>
+    <span style="margin-right:1rem">{{ getUserName() || 'Usuario' }}</span>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-template>
 </mat-toolbar>
 <div style="max-width:900px;margin:2rem auto;padding:1rem">
   <router-outlet></router-outlet>

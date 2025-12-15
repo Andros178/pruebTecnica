@@ -38,6 +38,7 @@ public class TramiteService {
     private final UsuarioRepository usuarioRepository;
     private final SeguimientoRepository seguimientoRepository;
 
+    @Transactional(readOnly = true)
     public Page<TramiteDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(mapper::toDTO);
     }
@@ -47,6 +48,7 @@ public class TramiteService {
         return repository.findAllByAsignado_Id(usuarioId, pageable).map(mapper::toDTO);
     }
 
+    @Transactional(readOnly = true)
     public Optional<TramiteDTO> findById(Long id) {
         return repository.findById(id).map(mapper::toDTO);
     }

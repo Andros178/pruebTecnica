@@ -32,8 +32,9 @@ export class LoginComponent {
       .subscribe({
         next: (res) => {
           this.auth.saveToken(res.token);
-          alert('Login exitoso — token guardado.');
+          // on successful login, redirect to home/dashboard
           this.loading = false;
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           alert('Error en login: ' + (err?.error || err?.message || err));
