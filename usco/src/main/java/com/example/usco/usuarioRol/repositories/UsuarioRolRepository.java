@@ -12,4 +12,6 @@ public interface UsuarioRolRepository
         boolean existsByUsuario_IdAndRol_Id(Long usuarioId, Long rolId);
 
         java.util.List<UsuarioRol> findAllByUsuario_IdAndEstado_Id(Long usuarioId, Long estadoId);
+        
+        java.util.List<UsuarioRol> findAllByRol_NombreAndEstado_Id(String rolNombre, Long estadoId);
 }

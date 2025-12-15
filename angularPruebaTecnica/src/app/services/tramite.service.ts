@@ -27,6 +27,27 @@ export interface TramiteCreateRequest {
   archivos?: ArchivoAdjuntoCreateDTO[];
 }
 
+export interface TramiteDTO {
+  id: number;
+  descripcion?: string;
+  creadorNombre?: string;
+  asignadoNombre?: string;
+  estadoId?: number;
+  estadoNombre?: string;
+  tipoTramiteId?: number;
+}
+
+export interface ComentarioCreateRequest {
+  mensaje: string;
+  estadoId?: number;
+}
+
+export interface UsuarioDTO {
+  id: number;
+  nombre: string;
+  personaNombre?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class TramiteService {
   private base = '/api';
@@ -104,6 +125,56 @@ export class TramiteService {
         }
         return throwError(() => err);
       })
+    );
+  }
+
+  // list tramites (page)
+  getTramites(page = 0, size = 50) {
+    const url = `${this.base}/tramite?page=${page}&size=${size}`;
+    return this.http.get<any>(url, { observe: 'response' as const }).pipe(
+      map((resp) => {
+        const body = resp.body as any;
+        if (body == null) return { content: [], totalElements: 0 };
+        return body;
+      }),
+      catchError((err) => throwError(() => err))
+    );
+  }
+
+  asignar(tramiteId: number, usuarioId: number) {
+    const url = `${this.base}/tramite/${tramiteId}/asignar`;
+    return this.http.post(url, { usuarioId }, { observe: 'response' as const });
+  }
+
+  addComentario(tramiteId: number, req: ComentarioCreateRequest) {
+    const url = `${this.base}/tramite/${tramiteId}/comentarios`;
+    return this.http.post<ComentarioCreateRequest>(url, req);
+  }
+
+  getComentarios(tramiteId: number) {
+    const url = `${this.base}/tramite/${tramiteId}/comentarios`;
+    return this.http.get<any[]>(url).pipe(catchError((err) => throwError(() => err)));
+  }
+
+  updateEstado(tramiteId: number, estadoId: number) {
+    const url = `${this.base}/tramite/${tramiteId}/estado/${estadoId}`;
+    return this.http.put(url, {} , { observe: 'response' as const });
+  }
+
+  getUsuariosByRole(rolNombre: string) {
+    const url = `${this.base}/usuario/role/${rolNombre}`;
+    return this.http.get<UsuarioDTO[]>(url).pipe(catchError((err) => throwError(() => err)));
+  }
+
+  getEstados() {
+    const url = `${this.base}/estado?page=0&size=200`;
+    return this.http.get<any>(url, { observe: 'response' as const }).pipe(
+      map((resp) => {
+        const body = resp.body as any;
+        if (body == null) return [];
+        return body.content || body || [];
+      }),
+      catchError((err) => throwError(() => err))
     );
   }
 }

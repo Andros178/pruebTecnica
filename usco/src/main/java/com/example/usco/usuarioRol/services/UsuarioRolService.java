@@ -34,6 +34,7 @@ public class UsuarioRolService {
     private final RolRepository rolRepository;
     private final RolMapper rolMapper;
     private final EstadoRepository estadoRepository;
+    private final com.example.usco.usuario.mappers.UsuarioMapper usuarioMapper;
 
     @Transactional(readOnly = true)
     public Page<UsuarioRolDTO> findAll(Pageable pageable) {
@@ -146,6 +147,14 @@ public class UsuarioRolService {
         var list = repository.findAllByUsuario_IdAndEstado_Id(usuarioId, 1L);
         return list.stream()
             .map(ur -> rolMapper.toDTO(ur.getRol()))
+            .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public java.util.List<com.example.usco.usuario.dtos.UsuarioDTO> findUsuariosByRol(String rolNombre) {
+        var list = repository.findAllByRol_NombreAndEstado_Id(rolNombre, 1L);
+        return list.stream()
+            .map(ur -> usuarioMapper.toDTO(ur.getUsuario()))
             .collect(Collectors.toList());
     }
 }

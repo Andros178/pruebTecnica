@@ -88,4 +88,14 @@ public class UsuarioController {
         }
         return ResponseEntity.ok(roles);
     }
+
+    @GetMapping("/role/{rolNombre}")
+    public ResponseEntity<java.util.List<com.example.usco.usuario.dtos.UsuarioDTO>> getUsuariosByRole(@PathVariable String rolNombre) {
+        var users = usuarioRolService.findUsuariosByRol(rolNombre);
+        if (users == null || users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(users);
+    }
 }
+
