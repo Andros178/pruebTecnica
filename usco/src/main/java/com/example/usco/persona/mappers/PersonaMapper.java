@@ -15,6 +15,6 @@ public interface PersonaMapper {
     PersonaDTO toDTO(Persona entity);
 
     @Mapping(source = "tipoIdentificacionId", target = "tipoIdentificacion.id")
-    @Mapping(source = "estadoId", target = "estado.id")
+
     Persona toEntity(PersonaDTO dto);
 }

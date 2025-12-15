@@ -43,13 +43,14 @@ public class PersonaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(
+    public ResponseEntity<PersonaDTO> create(
             @Valid @RequestBody PersonaDTO dto,
             UriComponentsBuilder ucb) {
 
         PersonaDTO saved = service.create(dto);
         URI location = uriBuilderUtil.buildPersonaUri(saved.getId(), ucb);
-        return ResponseEntity.created(location).build();
+        
+        return ResponseEntity.created(location).body(saved);
     }
 
     @PutMapping("/{id}")
