@@ -12,6 +12,6 @@ public interface TipoTramiteMapper {
     @Mapping(target = "estadoNombre", source = "estado.nombre")
     TipoTramiteDTO toDTO(TipoTramite entity);
 
-    @Mapping(source = "estado.id", target = "estadoId")
+    @Mapping(source = "estadoId", target = "estado.id")
     TipoTramite toEntity(TipoTramiteDTO dto);
 }

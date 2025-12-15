@@ -24,6 +24,8 @@ import com.example.usco.estado.Estado;
 import com.example.usco.archivoAdjunto.ArchivoAdjunto;
 import com.example.usco.tipoTramite.TipoTramite;
 import com.example.usco.tipoTramite.repositories.TipoTramiteRepository;
+import com.example.usco.seguimiento.Seguimiento;
+import com.example.usco.seguimiento.repositories.SeguimientoRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +36,7 @@ public class TramiteService {
     private final ArchivoAdjuntoRepository archivoAdjuntoRepository;
     private final TipoTramiteRepository tipoTramiteRepository;
     private final UsuarioRepository usuarioRepository;
+    private final SeguimientoRepository seguimientoRepository;
 
     public Page<TramiteDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(mapper::toDTO);
@@ -72,6 +75,20 @@ public class TramiteService {
         entity.setEstado(nuevoEstado);
 
         repository.save(entity);
+
+        // record seguimiento with authenticated user if available
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && auth.getName() != null) {
+            var nombre = auth.getName();
+            usuarioRepository.findByNombre(nombre).ifPresent(u -> {
+                Seguimiento s = Seguimiento.builder()
+                    .tramite(entity)
+                    .usuario(u)
+                    .estado(nuevoEstado)
+                    .build();
+                seguimientoRepository.save(s);
+            });
+        }
     }
 
     public void asignar(Long tramiteId, Long usuarioId) {

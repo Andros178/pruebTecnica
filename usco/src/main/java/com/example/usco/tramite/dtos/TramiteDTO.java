@@ -19,4 +19,10 @@ public class TramiteDTO {
     private Long creadorId;
     private String creadorNombre;
 
+    private Long estadoId;
+    private String estadoNombre;
+
+    private Long tipoTramiteId;
+    private String tipoTramiteNombre;
+
 }
