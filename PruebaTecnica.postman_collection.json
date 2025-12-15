@@ -176,14 +176,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BASE_URL}}{{PORT}}/api/tipoTramite/1/documentos-requeridos",
+									"raw": "{{BASE_URL}}{{PORT}}/api/tipoTramite/2/documentos-requeridos",
 									"host": [
 										"{{BASE_URL}}{{PORT}}"
 									],
 									"path": [
 										"api",
 										"tipoTramite",
-										"1",
+										"2",
 										"documentos-requeridos"
 									]
 								}
@@ -239,6 +239,34 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Ver_tipos_tramite",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tipoTramite",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tipoTramite"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -252,6 +280,24 @@
 					"item": [
 						{
 							"name": "login_usuario_administrativo",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();",
+											"",
+											"pm.environment.set(\"jwt\", response.token);",
+											"",
+											"console.log(\"JWT guardado:\", response.token);",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
