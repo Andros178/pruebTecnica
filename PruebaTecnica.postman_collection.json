@@ -1,0 +1,468 @@
+{
+	"info": {
+		"_postman_id": "1784dec6-7a01-4470-95f0-410f507abb04",
+		"name": "PruebaTecnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35954859",
+		"_collection_link": "https://zambri.postman.co/workspace/pruebaTecnica~375b351a-15d1-48bf-84ce-fff2e6c8de38/collection/35954859-1784dec6-7a01-4470-95f0-410f507abb04?action=share&source=collection_link&creator=35954859"
+	},
+	"item": [
+		{
+			"name": "Tramite",
+			"item": [
+				{
+					"name": "Comentarios",
+					"item": [
+						{
+							"name": "Ver_comentario_tramite",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite/1/comentarios",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite",
+										"1",
+										"comentarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear_comentario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite/1/comentarios",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite",
+										"1",
+										"comentarios"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Gestion",
+					"item": [
+						{
+							"name": "Create_tramite",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipoTramiteId\":1,\n    \"descripcion\":\"prueba de postman\",\n    \"archivos\":[\n         {\n        \"nombreArchivo\": \"documento1.pdf\",\n        \"mime\": \"application/pdf\",\n        \"tamano\": \"2048576\",\n        \"url\": \"documento1.pdf\"\n      },\n      {\n        \"nombreArchivo\": \"foto_cedula.jpg\",\n        \"mime\": \"image/jpeg\",\n        \"tamano\": \"1024000\",\n        \"url\": \"foto_cedula.jpg\"\n      }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Asignar_tramite",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"usuarioId\":13\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite/1/asignar",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite",
+										"1",
+										"asignar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar_estado_tramite",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite/1/estado/2",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite",
+										"1",
+										"estado",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Informacion",
+					"item": [
+						{
+							"name": "Documentos_tipoTramite",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tipoTramite/1/documentos-requeridos",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tipoTramite",
+										"1",
+										"documentos-requeridos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver_tramite_funcionario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite/funcionario/2",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite",
+										"funcionario",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Seguimiento_tramite",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/tramite/1/seguimiento",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"tramite",
+										"1",
+										"seguimiento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "login_usuario_administrativo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"adminUser\",\n    \"contrasena\":\"adminUser\",\n    \"personaId\":\"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/auth/login",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Gestion",
+					"item": [
+						{
+							"name": "Ver_rol",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/usuario/1/roles",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"usuario",
+										"1",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar_rol_usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rolId\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/usuarioRol/6",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"usuarioRol",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar_rol",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\":\"DOCENTE\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}{{PORT}}/api/rol/2",
+									"host": [
+										"{{BASE_URL}}{{PORT}}"
+									],
+									"path": [
+										"api",
+										"rol",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Registrar_persona",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"usuarioPruebaTecnica\",\n    \"apellido\":\"usuarioPruebaTecnica\",\n    \"correo\":\"pruebaTecnica@gmail.com\",\n    \"numeroIdentificacion\":\"0123456\",\n    \"tipoIdentificacionId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}{{PORT}}/api/persona",
+							"host": [
+								"{{BASE_URL}}{{PORT}}"
+							],
+							"path": [
+								"api",
+								"persona"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar_usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"testRegister\",\n    \"contrasena\":\"testRegister\",\n    \"personaId\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}{{PORT}}/api/auth/register",
+							"host": [
+								"{{BASE_URL}}{{PORT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iniciar_sesion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.environment.set(\"jwt\", response.token);",
+									"",
+									"console.log(\"JWT guardado:\", response.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"testRegister\",\n    \"contrasena\":\"testRegister\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}{{PORT}}/api/auth/login",
+							"host": [
+								"{{BASE_URL}}{{PORT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
